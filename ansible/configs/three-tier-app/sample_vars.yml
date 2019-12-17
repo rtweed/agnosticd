@@ -14,18 +14,20 @@ env_type: three-tier-app                # Name of config to deploy
 output_dir: /tmp/workdir                # Writable working scratch directory
 email: name@example.com                 # User info for notifications
 
-guid: guid01                            # Your Global UNIQUE Identifier
-subdomain_base_suffix: .example.opentlc.com   # Your domain used with guid in FQDN
+#guid: guid01                            # Your Global UNIQUE Identifier
+#subdomain_base_suffix: .example.opentlc.com   # Your domain used with guid in FQDN
 
 # Path to your yum repos
 
-own_repo_path: http://admin.example.com/repos/version
+#own_repo_path: http://admin.example.com/repos/version
+own_repo_path: http://d3s3zqyaz8cp2d.cloudfront.net/repos/ocp/4.2.0
 
 # Cloud specfic settings - example given here for AWS
 
 cloud_provider: ec2                     # Which AgnosticD Cloud Provider to use
 aws_region: us-east-1                   # AWS Region to deploy in
-HostedZoneId: Z3IHLWJZOU9SRT            # You will need to change this
+HostedZoneId: Z3MA3BH5MLSWLE
+#HostedZoneId: Z31GCDY074AEX4            # You will need to change this
 key_name: ocpkey                        # Keyname must exist in AWS
 
 # AWS Credentials. These are required (don't sync them to your fork)
@@ -33,7 +35,11 @@ key_name: ocpkey                        # Keyname must exist in AWS
 # Alternatively consider keeping these in an external file and including:
 # $ ansible-playbook main.yml -e @configs/three-tier-app/sample.yml -e @~/secret.yml
 #
-# aws_access_key_id: 
-# aws_secret_access_key: 
+#aws_access_key_id: AKIA4F35QCXFDSQK2EN2
+
+aws_access_key_id: AKIAI5GCZHSDZZTKPOAQ
+aws_secret_access_key: OImOQMY2agEzpwB/5YGbhTQv5LhqIZc8t+j6H6Qj
+
+#aws_secret_access_key: alhxhIN/lmpCx/ABMNak6PYNy0nlSL1+B1lmGVD6
 # ...
 

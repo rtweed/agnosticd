@@ -30,7 +30,7 @@ update_packages: false
 
 ## guid is the deployment unique identifier, it will be appended to all tags,
 ## files and anything that identifies this environment from another "just like it"
-guid: defaultguid
+guid: 0ae1
 
 # This var is used to identify stack (cloudformation, azure resourcegroup, ...)
 project_tag: "{{ env_type }}-{{ guid }}"
@@ -81,7 +81,7 @@ key_name: "default_key_name"
 
 ## Networking (AWS)
 subdomain_base_short: "{{ guid }}"
-subdomain_base_suffix: ".example.opentlc.com"
+subdomain_base_suffix: ".example.local"
 subdomain_base: "{{subdomain_base_short}}{{subdomain_base_suffix}}"
 
 ## Environment Sizing
@@ -94,7 +94,7 @@ appdb_instance_type: "{{frontend_instance_type}}"
 support_instance_type: "t2.small"
 
 frontend_instance_count: 1
-app_instance_count: 2
+app_instance_count: 1
 appdb_instance_count: 1
 support_instance_count: 1
 rootfs_size_bastion: 50

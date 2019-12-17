@@ -54,12 +54,15 @@ set_env_authorized_key: true
 # Is this running from Red Hat Ansible Tower
 tower_run: false
 
+target_regions:
+  - name: emea
+
 ### AWS EC2 Environment settings
 
 ### Route 53 Zone ID (AWS)
 # This is the Route53 HostedZoneId where you will create your Public DNS entries
 # This only needs to be defined if your CF template uses route53
-HostedZoneId: Z3IHLWJZOU9SRT
+#HostedZoneId: Z3IHLWJZOU9SRT
 # The region to be used, if not specified by -e in the command line
 aws_region: ap-southeast-2
 # The key that is used to
@@ -86,14 +89,14 @@ subnets:
 
 security_groups:
   - name: BastionSG
-    rules:
-      - name: BasSSHPublic
-        description: "SSH public"
-        from_port: 22
-        to_port: 22
-        protocol: tcp
-        cidr: "0.0.0.0/0"
-        rule_type: Ingress
+#    rules:
+#      - name: BasSSHPublic
+#        description: "SSH public"
+#        from_port: 22
+#        to_port: 22
+#        protocol: tcp
+#        cidr: "0.0.0.0/0"
+#        rule_type: Ingress
 
   - name: SatelliteSG
     rules:
@@ -106,14 +109,14 @@ security_groups:
         rule_type: Ingress
       - name: BastionUDPPorts
         description: "Only from bastion"
-        from_port: 0
+        from_port: 1
         to_port: 65535
         protocol: udp
         from_group: DefaultSG
         rule_type: Ingress
       - name: BastionTCPPorts
         description: "Only from bastion"
-        from_port: 0
+        from_port: 1
         to_port: 65535
         protocol: tcp
         from_group: DefaultSG
@@ -130,14 +133,14 @@ security_groups:
         rule_type: Ingress
       - name: BastionUDPPorts
         description: "Only from bastion"
-        from_port: 0
+        from_port: 1
         to_port: 65535
         protocol: udp
         from_group: DefaultSG
         rule_type: Ingress
       - name: BastionTCPPorts
         description: "Only from bastion"
-        from_port: 0
+        from_port: 1
         to_port: 65535
         protocol: tcp
         from_group: DefaultSG
@@ -168,7 +171,7 @@ instances:
     public_dns: true
     security_groups: 
       - SatelliteSG
-      - DefaultSG
+ #     - DefaultSG
     flavor:
       ec2: "{{satellite_instance_type}}"
     tags:
@@ -184,7 +187,7 @@ capsule_instances:
     count: "{{capsule_instance_count}}"
     security_groups:
       - CapsuleSG
-      - DefaultSG
+#      - DefaultSG
     public_dns: true
     dns_loadbalancer: false
     flavor:
